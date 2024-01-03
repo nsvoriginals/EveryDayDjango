@@ -1,0 +1,2 @@
+# EveryDayDjango
+BEGINER TO PRO

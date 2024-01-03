@@ -1,0 +1,48 @@
+{%load static%}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tasks</title>
+    <!-- Load static CSS file -->
+    <link rel="stylesheet" type="text/css" href="{% static 'styles.css' %}">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.bundle.min.js">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js">
+    <script src="{% static 'script.js' %}"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.3/css/font-awesome.css">
+</head>
+<body style="display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0;">
+    <div class="card px-3">
+        <form method="post" action="{% url 'remTask' %}">
+            {% csrf_token %}
+            <ul class="d-flex flex-column-reverse todo-list">
+                {% for todo in todos %}
+                <li>
+                    <div class="form-check">
+                        <label class="form-check-label">
+                            <input class="checkbox" type="checkbox" name="task" value="{{ todo.task }}">
+                            {{ todo.task }}
+                            <i class="input-helper"></i>
+                        </label>
+                    </div>
+                    <i class="remove mdi mdi-close-circle-outline"></i>
+                </li>
+                {% endfor %}
+            </ul>
+            <button type="submit" class="btn btn-danger">Delete Selected</button>
+        </form>
+        
+        <br>
+
+        <br>
+        <form method="post" action="{% url 'addtask' %}">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-primary" style="margin-top: 50px; width: 165px;">Add Task</button>
+        </form>
+    </div>
+</body>
+
+</html>

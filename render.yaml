@@ -6,4 +6,4 @@ services:
     startCommand: gunicorn todo.wsgi:application --bind 0.0.0.0:$PORT
     env:
       - key: DJANGO_SETTINGS_MODULE
-        value: "your_project_name.settings"
+        value: "todo.settings"
